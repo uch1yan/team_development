@@ -58,9 +58,7 @@ class TeamsController < ApplicationController
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
   end
 
-  def owner_access 
-    unless current_user == @team.owner
-      redirect_to team_path, notice: I18n.t('views.messages.cannot_access')
-    end 
+  def owner_access
+    redirect_to team_path, notice: I18n.t('views.messages.cannot_access') unless current_user == @team.owner
   end
 end
