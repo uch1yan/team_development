@@ -205,6 +205,7 @@ ja:
     pm: 午後
   views:
     messages:
+      cannot_access: '権限がありません'
       create_agenda: 'アジェンダ作成に成功しました！'
       create_article: '記事作成に成功しました！'
       update_article: '記事更新に成功しました！'
@@ -253,6 +254,7 @@ ja:
       edit_profile: 'プロフィールを編集'
       team_you_belong_to: '所属しているチーム'
       posted_articles: '投稿した記事一覧'
+
     button:
       submit: '投稿'
       edit: '編集'
