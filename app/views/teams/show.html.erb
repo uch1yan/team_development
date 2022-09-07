@@ -45,6 +45,8 @@
                         <td><%= link_to I18n.t('views.button.delete'), team_assign_path(assign.user.id), method: :delete, class: 'btn btn-sm btn-danger' %></td>
                       <% elsif current_user == @team.owner %>
                         <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+                        <td><%= link_to "権限移動", assign_owner_team_path(owner_id: assign.user_id), method: :post, class: 'btn btn-sm btn-success' %></td>
+      
                       <% end %>
                     </tr>
                   <% end %>
