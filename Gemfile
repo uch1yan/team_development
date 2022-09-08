@@ -61,6 +61,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'rack-mini-profiler', require: false
+  gem 'rexml', '~> 3.2', '>= 3.2.4'
   gem 'web-console', '>= 3.3.0'
 end
 
