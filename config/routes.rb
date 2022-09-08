@@ -17,10 +17,9 @@ Rails.application.routes.draw do
       end
     end
     member do
-      post :assign_owner
+      post :owner
     end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
-#  match "/assigns/:id" => "teams#owner", :as => :owner, via: :get
