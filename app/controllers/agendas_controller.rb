@@ -1,5 +1,6 @@
 class AgendasController < ApplicationController
   before_action :set_agenda, only: %i[show edit update destroy]
+  before_action :authority, only: [:destroy]
 
   def index
     @agendas = Agenda.all
@@ -29,9 +30,6 @@ class AgendasController < ApplicationController
     end
   end
 
-
-  end
-
   private
 
   def set_agenda
@@ -40,5 +38,11 @@ class AgendasController < ApplicationController
 
   def agenda_params
     params.fetch(:agenda, {}).permit %i[title description]
+  end
+
+  def authority
+    unless current_user == @agenda.user || current_user == @agenda.team.owner
+      redirect_to dashboard_url, notice: "権限がありません"
+    end
   end
 end
