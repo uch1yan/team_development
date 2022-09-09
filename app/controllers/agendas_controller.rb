@@ -23,11 +23,12 @@ class AgendasController < ApplicationController
   end
 
   def destroy
-    if @agenda.destroy
-      redirect_to dashboard_url, notice: '削除しました'
-    else
-      render :index
+    @agenda.destroy
+    members = @agenda.team.members
+    members.each do |member|
+      AgendaMailer.agenda_delete_mail(member.email).deliver
     end
+    redirect_to dashboard_url, notice: I18n.t('views.messages.delete_agenda')
   end
 
   private
@@ -42,7 +43,7 @@ class AgendasController < ApplicationController
 
   def authority
     unless current_user == @agenda.user || current_user == @agenda.team.owner
-      redirect_to dashboard_url, notice: "権限がありません"
+      redirect_to dashboard_url, notice: I18n.t('views.messages.do_not_have_right')
     end
   end
 end
