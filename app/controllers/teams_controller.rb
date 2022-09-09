@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team, only: %i[show edit update destroy owner]
   before_action :owner_access, only: [:edit]
-  
+
   def index
     @teams = Team.all
   end
@@ -55,10 +55,7 @@ class TeamsController < ApplicationController
     else
       redirect_to team_path(@team), notice: "権限の移動に失敗しました。"
     end
-
-
   end
-
 
   private
 
@@ -67,9 +64,8 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id, email]
+    params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
   end
-  
 
   def owner_access
     redirect_to team_path, notice: I18n.t('views.messages.cannot_access') unless current_user == @team.owner

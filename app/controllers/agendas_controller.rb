@@ -42,8 +42,6 @@ class AgendasController < ApplicationController
   end
 
   def authority
-    unless current_user == @agenda.user || current_user == @agenda.team.owner
-      redirect_to dashboard_url, notice: I18n.t('views.messages.do_not_have_right')
-    end
+    redirect_to dashboard_url, notice: I18n.t('views.messages.do_not_have_right') unless current_user == @agenda.user || current_user == @agenda.team.owner
   end
 end
